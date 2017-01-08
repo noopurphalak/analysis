@@ -7,12 +7,12 @@ population_data = []
 state_index = 3
 no_of_buckets = 10
 bin_interval = 0
-bin_lower_limit = 0
-bin_upper_limit = 0
-bins = []
+bucket_lower_limit = 0
+bucket_upper_limit = 0
+buckets = []
 
 
-class Bin(object):
+class Bucket(object):
     upper_limit = 0
     lower_limit = 0
 
@@ -53,16 +53,16 @@ bin_interval = int((highest_population - lowest_population) / no_of_buckets) + 1
 
 for b in range(1, no_of_buckets + 1):
     if b == 1:
-        bin_lower_limit = lowest_population
+        bucket_lower_limit = lowest_population
     else:
-        bin_lower_limit = bin_upper_limit
-    bin_upper_limit = bin_lower_limit + bin_interval
-    bins.append(Bin(bin_upper_limit, bin_lower_limit))
+        bucket_lower_limit = bucket_upper_limit
+    bucket_upper_limit = bucket_lower_limit + bin_interval
+    buckets.append(Bucket(bucket_upper_limit, bucket_lower_limit))
 
 for state_pop in population_data:
-    for b in bins:
+    for b in buckets:
         if b.is_element_in_range(state_pop):
             b.add_element(state_pop)
             b.update_count()
-for b in bins:
-    print(b.__dict__)
+for b in buckets:
+    print("Bucket(" + str(b.__dict__) + ")")
