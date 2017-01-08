@@ -1,13 +1,13 @@
-f_obj = open('NST-EST2015-alldata.csv')
-data = f_obj.readlines()
-f_obj.close()
-
 state_index = 3
 state_name_index = 4
 population_index = 12
 state_data = []
 
 print('Loading data')
+f_obj = open('NST-EST2015-alldata.csv')
+data = f_obj.readlines()
+f_obj.close()
+
 for record in data[1:]:
     record_data = record.split(',')
     if int(record_data[state_index]) in range(1, 57):
